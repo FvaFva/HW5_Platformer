@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 
-public class PlayerController : MonoBehaviour
+public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _speed;
@@ -27,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
             if(isUnderFeetCollision && IsGrounded())
             {
-                _body.AddForce(Vector2.up * _jumpForce);
+                _body.AddForce(Vector2.up * _jumpForce);               
             }
         }
 
@@ -46,8 +44,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (RaycastHit2D place in _downPlace)
         {
-            if(place.transform.TryGetComponent<Ground>(out Ground ground))
-                return true;
+            return place && place.transform.TryGetComponent<Ground>(out Ground ground);
         }
         
         return false;
