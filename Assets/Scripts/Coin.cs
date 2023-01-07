@@ -7,8 +7,6 @@ public class Coin : MonoBehaviour
         if(collision.TryGetComponent<Player>(out Player player))
         {
             Destroy(gameObject);
-            collision.TryGetComponent<Wollit>(out Wollit wollit);
-            wollit.AddCoin();
         }
     }
 }
